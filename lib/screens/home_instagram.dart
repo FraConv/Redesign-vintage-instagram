@@ -11,6 +11,13 @@ class HomeInstagram extends StatefulWidget {
 class _HomeInstagramState extends State<HomeInstagram> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      backgroundColor: Color(0xFFFFF5EB),
+      appBar: AppBar(
+        backgroundColor: Color(0xFFFFF5EB),
+        foregroundColor: Color(0xFF7F5539),
+        title: Text("Instagram", style: TextStyle(fontSize: 34)),
+      ),
+    );
   }
 }
