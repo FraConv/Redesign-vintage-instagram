@@ -63,8 +63,29 @@ flutter:
   assets:
     - assets/icons/notif.png
     - assets/icons/mess.png
+    - assets/icons/mess-on.png
     - assets/icons/comm-on.png
     - assets/icons/Arrow 1.png
+    - assets/icons/more-icon.png
+    - assets/icons/comm.png
+    - assets/icons/pref.png
+    - assets/icons/pref-on.png
+    - assets/icons/like.png
+    - assets/icons/like-on.png
+    - assets/img/profilo.png
+    - assets/img/profilo-2.jpg
+    - assets/img/profilo-3.jpg
+    - assets/img/profilo-4.jpg
+    - assets/img/profilo-5.jpg
+    - assets/img/profilo-6.jpg
+    - assets/img/profilo-7.jpg
+    - assets/img/profilo-8.jpg
+    - assets/img/profilo-9.jpg
+    - assets/img/post-1.jpg
+    - assets/img/post-2.jpg
+    - assets/img/post-3.jpg
+    
+
     
   #   - images/a_dot_ham.jpeg
 
