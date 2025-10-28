@@ -293,7 +293,7 @@ class _PostState extends State<Post> {
                               backgroundColor: const Color(0xFFFFEBD8),
                               shape: const RoundedRectangleBorder(
                                 borderRadius: BorderRadius.vertical(
-                                  top: Radius.circular(80),
+                                  top: Radius.circular(110),
                                 ),
                                 side: BorderSide(color: Colors.black, width: 3),
                               ),
@@ -312,7 +312,7 @@ class _PostState extends State<Post> {
                                             children: [
                                               Container(
                                                 width: 40,
-                                                height: 4,
+                                                height: 5,
                                                 margin: const EdgeInsets.only(
                                                   bottom: 10,
                                                 ),
@@ -379,7 +379,7 @@ class _PostState extends State<Post> {
                                               TextField(
                                                 decoration: InputDecoration(
                                                   hintText:
-                                                      'Scrivi un commento...',
+                                                      'Scrivi commento...',
                                                   hintStyle: const TextStyle(
                                                     color: Color(0xFF7F5539),
                                                   ),
@@ -393,14 +393,38 @@ class _PostState extends State<Post> {
                                                           30,
                                                         ),
                                                   ),
+                                                  enabledBorder:
+                                                      OutlineInputBorder(
+                                                        borderRadius:
+                                                            BorderRadius.circular(
+                                                              30,
+                                                            ),
+                                                        borderSide:
+                                                            const BorderSide(
+                                                              color:
+                                                                  Colors.black,
+                                                              width: 2.2,
+                                                            ),
+                                                      ),
+                                                  focusedBorder: OutlineInputBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                          30,
+                                                        ),
+                                                    borderSide: const BorderSide(
+                                                      color: Colors.black,
+                                                      width:
+                                                          2.2, // colore più scuro quando è attivo
+                                                    ),
+                                                  ),
                                                   contentPadding:
                                                       const EdgeInsets.symmetric(
                                                         horizontal: 16,
                                                       ),
                                                   suffixIcon: IconButton(
-                                                    icon: const Icon(
-                                                      Icons.send,
-                                                      color: Color(0xFF7F5539),
+                                                    icon: Image.asset(
+                                                      "assets/icons/mess.png",
+                                                      width: 22,
                                                     ),
                                                     onPressed: () {
                                                       // aggiungi un commento fittizio
