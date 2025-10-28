@@ -19,14 +19,46 @@ class _HomeInstagramState extends State<HomeInstagram> {
   }
 
   List<Map<String, dynamic>> storie = [
-    {"profilo": "assets/img/profilo.png", "nome": "The_Ghost"},
-    {"profilo": "assets/img/profilo-5.jpg", "nome": "Angel"},
-    {"profilo": "assets/img/profilo-6.jpg", "nome": "Sliver23"},
-    {"profilo": "assets/img/profilo-4.jpg", "nome": "Luna_Rossa"},
-    {"profilo": "assets/img/profilo-8.jpg", "nome": "Dany_Bro"},
-    {"profilo": "assets/img/profilo-2.jpg", "nome": "Marti05"},
-    {"profilo": "assets/img/profilo-3.jpg", "nome": "Gabry_Blood"},
-    {"profilo": "assets/img/profilo-7.jpg", "nome": "Sirius"},
+    {
+      "profilo": "assets/img/profilo.png",
+      "nome": "The_Ghost",
+      "miniatura": "assets/img/storia-1.jpg",
+    },
+    {
+      "profilo": "assets/img/profilo-5.jpg",
+      "nome": "Angel",
+      "miniatura": "assets/img/post-1.jpg",
+    },
+    {
+      "profilo": "assets/img/profilo-6.jpg",
+      "nome": "Sliver23",
+      "miniatura": "assets/img/post-2.jpg",
+    },
+    {
+      "profilo": "assets/img/profilo-4.jpg",
+      "nome": "Luna_Rossa",
+      "miniatura": "assets/img/post-3.jpg",
+    },
+    {
+      "profilo": "assets/img/profilo-8.jpg",
+      "nome": "Dany_Bro",
+      "miniatura": "assets/img/storia-2.jpg",
+    },
+    {
+      "profilo": "assets/img/profilo-2.jpg",
+      "nome": "Marti05",
+      "miniatura": "assets/img/storia-3.jpg",
+    },
+    {
+      "profilo": "assets/img/profilo-3.jpg",
+      "nome": "Gabry_Blood",
+      "miniatura": "assets/img/storia-1.jpg",
+    },
+    {
+      "profilo": "assets/img/profilo-7.jpg",
+      "nome": "Sirius",
+      "miniatura": "assets/img/post-1.jpg",
+    },
   ];
 
   @override
@@ -108,7 +140,7 @@ class _HomeInstagramState extends State<HomeInstagram> {
           children: [
             // storie
             SizedBox(
-              height: 150,
+              height: 260,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
                 padding: const EdgeInsets.all(10),
@@ -124,72 +156,138 @@ class _HomeInstagramState extends State<HomeInstagram> {
                           alignment: Alignment.bottomRight,
                           children: [
                             Container(
-                              margin: const EdgeInsets.only(bottom: 5),
+                              width: 150,
+                              height: 190,
                               decoration: BoxDecoration(
-                                color: const Color(0xFFB75446),
                                 borderRadius: BorderRadius.circular(50),
-                              ),
-                              child: Container(
-                                margin: const EdgeInsets.only(bottom: 7),
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(50),
-                                  border: Border.all(
-                                    color: Colors.black,
-                                    width: 3,
-                                  ),
+                                border: Border.all(
+                                  color: Colors.black,
+                                  width: 3,
                                 ),
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(50),
-                                    border: Border.all(
-                                      color: const Color(0xFFDD7F72),
-                                      width: 4,
-                                    ),
-                                  ),
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(50),
-                                    child: Image.asset(
-                                      item["profilo"],
-                                      width: 65,
-                                      height: 65,
-                                      fit: BoxFit.cover,
-                                    ),
-                                  ),
+                              ),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(50),
+                                child: Image.asset(
+                                  item["miniatura"],
+                                  width: double
+                                      .infinity, // riempie tutta la larghezza del container
+                                  height: double
+                                      .infinity, // e anche tutta l’altezza
+                                  fit: BoxFit
+                                      .cover, // riempie completamente lo spazio
+                                ),
+                              ),
+                            ),
+                            Container(
+                              width: 150,
+                              height: 65,
+                              decoration: BoxDecoration(
+                                color: Color(0xFFCAB9A8),
+                                borderRadius: BorderRadius.only(
+                                  bottomLeft: Radius.circular(50),
+                                  bottomRight: Radius.circular(50),
+                                ),
+                              ),
+                            ),
+                            Container(
+                              margin: EdgeInsets.only(bottom: 10),
+                              width: 150,
+                              height: 65,
+                              decoration: BoxDecoration(
+                                color: Color(0xFFFFEBD8),
+                                borderRadius: BorderRadius.only(
+                                  bottomLeft: Radius.circular(50),
+                                  bottomRight: Radius.circular(50),
+                                ),
+                                border: Border.all(
+                                  color: Colors.black,
+                                  width: 3,
+                                ),
+                              ),
+                            ),
+                            Positioned(
+                              left: 36.5,
+                              top: 78,
+                              child: Container(
+                                margin: EdgeInsets.only(bottom: 40),
+                                width: 80,
+                                height: 80,
+                                decoration: BoxDecoration(
+                                  color: Color(0xFFB75446),
+                                  borderRadius: BorderRadius.circular(250),
                                 ),
                               ),
                             ),
 
-                            // icona + prima storia
-                            if (isUserStory)
-                              Positioned(
-                                bottom: 5,
-                                right: 5,
-                                child: Container(
-                                  width: 22,
-                                  height: 22,
-                                  decoration: BoxDecoration(
-                                    color: const Color(0xFFB75446),
-                                    shape: BoxShape.circle,
-                                    border: Border.all(
-                                      color: Colors.black,
-                                      width: 2,
+                            Positioned(
+                              left: 33,
+                              bottom: 40,
+
+                              child: Stack(
+                                children: [
+                                  Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(50),
+                                      border: Border.all(
+                                        color: Colors.black,
+                                        width: 3.5,
+                                      ),
+                                    ),
+                                    child: Container(
+                                      width: 80,
+                                      height: 80,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(
+                                          250,
+                                        ),
+                                        border: Border.all(
+                                          color: Color(0xFFDD7F72),
+                                          width: 4,
+                                        ),
+                                      ),
+                                      child: CircleAvatar(
+                                        radius: 40,
+                                        backgroundColor: Colors.transparent,
+                                        backgroundImage: AssetImage(
+                                          item["profilo"],
+                                        ),
+                                      ),
                                     ),
                                   ),
-                                  child: const Icon(
-                                    Icons.add,
-                                    size: 16,
-                                    color: Colors.white,
-                                  ),
-                                ),
+                                  if (isUserStory)
+                                    Positioned(
+                                      right: 0,
+                                      bottom: 0,
+                                      child: Container(
+                                        width: 26,
+                                        height: 26,
+                                        decoration: BoxDecoration(
+                                          color: const Color(0xFFDD7F72),
+                                          shape: BoxShape.circle,
+                                          border: Border.all(
+                                            color: Colors.black,
+                                            width: 2.5,
+                                          ),
+                                        ),
+                                        child: const Icon(
+                                          Icons.add,
+                                          color: Colors.black,
+                                          size: 18,
+                                        ),
+                                      ),
+                                    ),
+                                ],
                               ),
+                            ),
                           ],
                         ),
+                        const SizedBox(height: 10),
                         Text(
                           isUserStory ? "La tua storia" : item["nome"],
                           style: const TextStyle(
-                            color: Colors.black,
+                            color: Color(0xFF7F5539),
                             fontSize: 15,
-                            fontWeight: FontWeight.w500,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
                       ],
