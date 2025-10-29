@@ -69,6 +69,7 @@ class _HomeInstagramState extends State<HomeInstagram> {
       backgroundColor: const Color(0xFFFFF5EB),
       appBar: AppBar(
         backgroundColor: const Color(0xFFFFF5EB),
+        scrolledUnderElevation: 0,
         elevation: 0,
         titleSpacing: 0,
         title: Padding(

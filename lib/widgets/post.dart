@@ -200,7 +200,7 @@ class _PostState extends State<Post> {
                             ),
                             child: Container(
                               height: 30,
-                              margin: const EdgeInsets.only(bottom: 4),
+                              margin: const EdgeInsets.only(bottom: 5),
                               child: ElevatedButton(
                                 onPressed: () {
                                   setState(() {
