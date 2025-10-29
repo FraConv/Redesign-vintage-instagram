@@ -72,6 +72,14 @@ flutter:
     - assets/icons/pref-on.png
     - assets/icons/like.png
     - assets/icons/like-on.png
+    - assets/icons/home.png
+    - assets/icons/home-on.png
+    - assets/icons/lente.png
+    - assets/icons/lente-on.png
+    - assets/icons/add.png
+    - assets/icons/add-on.png
+    - assets/icons/reel.png
+    - assets/icons/reel-on.png
     - assets/img/profilo.png
     - assets/img/profilo-2.jpg
     - assets/img/profilo-3.jpg

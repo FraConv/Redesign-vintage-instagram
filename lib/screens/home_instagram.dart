@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intagram/widgets/post.dart';
+import 'package:intagram/widgets/navbar.dart';
 
 class HomeInstagram extends StatefulWidget {
   const HomeInstagram({super.key});
@@ -82,7 +83,8 @@ class _HomeInstagramState extends State<HomeInstagram> {
                   foregroundColor: const Color(0xFF7F5539),
                   padding: EdgeInsets.zero,
                 ),
-                onPressed: () {},
+                onPressed: () =>
+                    Navigator.pushReplacementNamed(context, "/themes"),
                 child: const Row(
                   children: [
                     Text(
@@ -298,12 +300,13 @@ class _HomeInstagramState extends State<HomeInstagram> {
             ),
             Column(
               children: [
-                Padding(padding: EdgeInsets.only(bottom: 70), child: Post()),
+                Padding(padding: EdgeInsets.only(bottom: 10), child: Post()),
               ],
             ),
           ],
         ),
       ),
+      bottomNavigationBar: const NavBar(selectedIndex: 0),
     );
   }
 }
