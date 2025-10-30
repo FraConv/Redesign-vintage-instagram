@@ -1,19 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:intagram/screens/add_screen.dart';
 import 'package:intagram/screens/home_instagram.dart';
 import 'package:intagram/screens/profile_screen.dart';
 import 'package:intagram/screens/reels_screen.dart';
 import 'package:intagram/screens/search_screen.dart';
 import 'package:intagram/screens/themes_screen.dart';
+import 'package:intagram/widgets/theme_provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (_) => SettingsProvider(), // istanza del provider
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

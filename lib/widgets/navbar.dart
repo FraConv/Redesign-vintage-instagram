@@ -34,79 +34,98 @@ class NavBar extends StatelessWidget {
       alignment: Alignment.bottomCenter,
       children: [
         Container(
-          margin: const EdgeInsets.only(bottom: 30, right: 10, left: 10),
-          height: 55,
+          margin: EdgeInsets.only(bottom: 20, right: 10, left: 10),
           decoration: BoxDecoration(
-            color: const Color(0xFFFFEBD8),
+            color: Color(0xFFCAB9A8),
             borderRadius: const BorderRadius.only(
-              topLeft: Radius.circular(55),
-              topRight: Radius.circular(55),
+              topLeft: Radius.circular(75),
+              topRight: Radius.circular(75),
               bottomLeft: Radius.circular(10),
               bottomRight: Radius.circular(10),
             ),
-            border: Border.all(color: Colors.black, width: 3),
           ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: List.generate(items.length, (index) {
-              final item = items[index];
-              final bool isAdd = index == 2;
-              final bool isProfile = index == 4;
+          child: Container(
+            margin: const EdgeInsets.only(bottom: 8, right: 2, left: 2),
+            height: 55,
+            decoration: BoxDecoration(
+              color: const Color(0xFFFFEBD8),
+              borderRadius: const BorderRadius.only(
+                topLeft: Radius.circular(55),
+                topRight: Radius.circular(55),
+                bottomLeft: Radius.circular(10),
+                bottomRight: Radius.circular(10),
+              ),
+              border: Border.all(color: Colors.black, width: 3),
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: List.generate(items.length, (index) {
+                final item = items[index];
+                final bool isAdd = index == 2;
+                final bool isProfile = index == 4;
 
-              if (isAdd) return const SizedBox(width: 60);
+                if (isAdd) return const SizedBox(width: 60);
 
-              return GestureDetector(
-                onTap: () => _onItemTapped(context, index, items),
-                child: isProfile
-                    ? Container(
-                        padding: EdgeInsets.all(3.2),
-                        decoration: BoxDecoration(
-                          color: selectedIndex == index
-                              ? Color(0xFFFF8100)
-                              : Color(0xFFB08968),
-                          shape: BoxShape.circle,
-                          border: Border.all(color: Colors.black, width: 3.2),
-                        ),
-                        child: ClipOval(
-                          child: Image.asset(
-                            selectedIndex == index
-                                ? item.activeIcon
-                                : item.icon,
-                            width: 28,
-                            height: 28,
-                            fit: BoxFit.cover,
+                return GestureDetector(
+                  onTap: () => _onItemTapped(context, index, items),
+                  child: isProfile
+                      ? Container(
+                          padding: EdgeInsets.all(3.2),
+                          decoration: BoxDecoration(
+                            color: selectedIndex == index
+                                ? Color(0xFFFF8100)
+                                : Color(0xFFB08968),
+                            shape: BoxShape.circle,
+                            border: Border.all(color: Colors.black, width: 3),
                           ),
+                          child: ClipOval(
+                            child: Image.asset(
+                              selectedIndex == index
+                                  ? item.activeIcon
+                                  : item.icon,
+                              width: 28,
+                              height: 28,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        )
+                      : Image.asset(
+                          selectedIndex == index ? item.activeIcon : item.icon,
+                          width: 35,
+                          height: 35,
                         ),
-                      )
-                    : Image.asset(
-                        selectedIndex == index ? item.activeIcon : item.icon,
-                        width: 35,
-                        height: 35,
-                      ),
-              );
-            }),
+                );
+              }),
+            ),
           ),
         ),
         // pulsante add sovrapposto
         Positioned(
-          bottom: 50,
+          bottom: 43,
           child: GestureDetector(
             onTap: () => _onItemTapped(context, 2, items),
             child: Container(
-              width: 70,
-              height: 70,
               decoration: BoxDecoration(
-                color: const Color(0xFFFFEBD8),
-                shape: BoxShape.circle,
-                border: Border.all(color: Colors.black, width: 3),
+                borderRadius: BorderRadius.circular(50),
+                color: Color(0xFFCAB9A8),
               ),
-              child: Padding(
-                padding: const EdgeInsets.all(12.0),
-                child: Image.asset(
-                  selectedIndex == 2 ? items[2].activeIcon : items[2].icon,
+              child: Container(
+                margin: EdgeInsets.only(bottom: 7),
+                width: 70,
+                height: 70,
+                decoration: BoxDecoration(
+                  color: const Color(0xFFFFEBD8),
+                  shape: BoxShape.circle,
+                  border: Border.all(color: Colors.black, width: 3),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(12.0),
+                  child: Image.asset(
+                    selectedIndex == 2 ? items[2].activeIcon : items[2].icon,
 
-                  width: 40,
-                  height: 40,
+                    width: 40,
+                    height: 40,
+                  ),
                 ),
               ),
             ),

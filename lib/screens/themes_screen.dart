@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:intagram/widgets/theme_provider.dart';
 
 class ThemesScreen extends StatefulWidget {
   const ThemesScreen({super.key});
@@ -10,31 +12,30 @@ class ThemesScreen extends StatefulWidget {
 final List<Map<String, dynamic>> basicSettings = [
   {
     "title": "Tema scuro",
-    "subtitle": "Attivi il tema scuro",
+    "subtitle": "Attiva il tema scuro.",
     "isActive": false,
   },
   {
     "title": "Temi automatici",
-    "subtitle": "Attivi il cambio automatico del tema ogni festivita.",
+    "subtitle":
+        "Attiva il cambio automatico del tema in occasione delle festività.",
     "isActive": true,
   },
   {
     "title": "Modalita mancino",
     "subtitle":
-        "Attivi il cambio di posizione per i pulsanti (da destra a sinistra)",
+        "Attiva il cambio di posizione dei pulsanti (da destra a sinistra).",
     "isActive": false,
   },
 ];
 
 final List<Map<String, dynamic>> customThemes = [
-  {"img": "assets/img/vintage.png", "nome": "Standart"},
+  {"img": "assets/img/vintage.png", "nome": "Standard"},
   {"img": "assets/img/halloween.png", "nome": "Halloween"},
   {"img": "assets/img/inverno.png", "nome": "Natalizio"},
   {"img": "assets/img/pasqua.png", "nome": "Pasqua"},
-  {"img": "assets/img/vintage.png", "nome": "Standart"},
-  {"img": "assets/img/halloween.png", "nome": "Halloween"},
-  {"img": "assets/img/inverno.png", "nome": "Natalizio"},
-  {"img": "assets/img/pasqua.png", "nome": "Pasqua"},
+  {"img": "assets/img/Valentino.png", "nome": "Valentino"},
+  {"img": "assets/img/Happy.png", "nome": "Happy"},
 ];
 
 class _ThemesScreenState extends State<ThemesScreen> {
@@ -104,13 +105,21 @@ class _ThemesScreenState extends State<ThemesScreen> {
                     child: Container(
                       margin: EdgeInsets.only(bottom: 7),
                       decoration: BoxDecoration(
-                        border: Border.all(color: Colors.black, width: 2.5),
+                        border: Border.all(color: Colors.black, width: 3),
                         borderRadius: BorderRadius.circular(50),
                       ),
                       child: GestureDetector(
-                        onTap: () => setState(
-                          () => item["isActive"] = !item["isActive"],
-                        ),
+                        onTap: () {
+                          setState(() {
+                            item["isActive"] = !item["isActive"];
+                          });
+
+                          if (item["title"] == "Modalita mancino") {
+                            context.read<SettingsProvider>().toggleLeftHanded(
+                              item["isActive"],
+                            );
+                          }
+                        },
                         child: AnimatedContainer(
                           duration: Duration(milliseconds: 200),
                           width: 60,
@@ -121,7 +130,7 @@ class _ThemesScreenState extends State<ThemesScreen> {
                             borderRadius: BorderRadius.circular(20),
                             border: Border.all(
                               color: Color(0xFFB08968),
-                              width: 2.5,
+                              width: 3,
                             ),
                           ),
 
@@ -147,7 +156,7 @@ class _ThemesScreenState extends State<ThemesScreen> {
                                 shape: BoxShape.circle,
                                 border: Border.all(
                                   color: Colors.black,
-                                  width: 2.5,
+                                  width: 3,
                                 ),
                                 boxShadow: item["isActive"]
                                     ? [
@@ -232,24 +241,27 @@ class _ThemesScreenState extends State<ThemesScreen> {
                 child: GridView.builder(
                   itemCount: customThemes.length,
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2, // ✅ due colonne
+                    crossAxisCount: 2, // due colonne
                     crossAxisSpacing: 15,
                     mainAxisSpacing: 15,
-                    childAspectRatio: 1, // regola forma (1 = quadrato)
+                    childAspectRatio: 1, // regola forma
                   ),
                   itemBuilder: (context, index) {
                     final theme = customThemes[index];
                     return GestureDetector(
                       onTap: () {
-                        // Azione quando selezioni un tema
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
                             content: Text(
                               "Hai selezionato il tema: ${theme["nome"]}",
-                              style: TextStyle(fontSize: 20),
+                              style: TextStyle(
+                                fontSize: 20,
+                                color: Color(0xFF7F5539),
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
-                            backgroundColor: const Color(0xFFB08968),
-                            shape: Border.all(color: Colors.black, width: 2.5),
+                            backgroundColor: const Color(0xFFFFEBD8),
+                            shape: Border.all(color: Colors.black, width: 3),
                           ),
                         );
                       },
@@ -265,7 +277,7 @@ class _ThemesScreenState extends State<ThemesScreen> {
                             borderRadius: BorderRadius.circular(40),
                             border: Border.all(
                               color: const Color.fromARGB(255, 0, 0, 0),
-                              width: 2.5,
+                              width: 3,
                             ),
                             boxShadow: const [
                               BoxShadow(
@@ -300,7 +312,7 @@ class _ThemesScreenState extends State<ThemesScreen> {
                                     border: Border(
                                       top: BorderSide(
                                         color: Colors.black,
-                                        width: 2.5,
+                                        width: 3,
                                       ),
                                     ),
                                     borderRadius: BorderRadius.only(

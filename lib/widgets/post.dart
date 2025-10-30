@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:intagram/widgets/theme_provider.dart';
 
 class Post extends StatefulWidget {
   const Post({super.key});
@@ -84,6 +86,7 @@ class _PostState extends State<Post> {
 
   @override
   Widget build(BuildContext context) {
+    final isLeftHanded = context.watch<SettingsProvider>().isLeftHanded;
     return Column(
       children: List.generate(post.length, (index) {
         final item = post[index];
@@ -248,7 +251,8 @@ class _PostState extends State<Post> {
                   // actions posts
                   Positioned(
                     top: 150,
-                    right: 15,
+                    left: isLeftHanded ? 15 : null,
+                    right: isLeftHanded ? null : 15,
                     child: Column(
                       children: [
                         IconButton(

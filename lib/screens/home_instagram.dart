@@ -77,28 +77,26 @@ class _HomeInstagramState extends State<HomeInstagram> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFFFFF5EB),
-                  elevation: 0,
-                  foregroundColor: const Color(0xFF7F5539),
-                  padding: EdgeInsets.zero,
-                ),
-                onPressed: () =>
-                    Navigator.pushReplacementNamed(context, "/themes"),
-                child: const Row(
-                  children: [
-                    Text(
-                      "Instagram",
-                      style: TextStyle(
-                        fontSize: 30,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    Icon(Icons.keyboard_arrow_down_rounded, size: 40),
-                  ],
+              Container(
+                child: Image.asset(
+                  "assets/img/Logo.png",
+                  width: 140,
+                  color: Color(0xFF7F5539),
                 ),
               ),
+              Container(
+                padding: EdgeInsets.only(right: 79),
+                child: IconButton(
+                  onPressed: () =>
+                      Navigator.pushReplacementNamed(context, "/themes"),
+                  icon: Icon(
+                    Icons.expand_more_rounded,
+                    size: 40,
+                    color: Color(0xFF7F5539),
+                  ),
+                ),
+              ),
+
               Row(
                 children: [
                   Stack(
