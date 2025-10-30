@@ -572,7 +572,7 @@ class _PostState extends State<Post> {
                   Text(
                     item["descrizione"],
                     style: TextStyle(
-                      fontWeight: FontWeight.normal,
+                      fontWeight: FontWeight.w500,
                       color: isDark ? Color(0xFFF0E5D9) : Color(0xFF7F5539),
                       fontSize: 15,
                     ),

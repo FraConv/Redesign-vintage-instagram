@@ -97,6 +97,7 @@ class _ThemesScreenState extends State<ThemesScreen> {
                     item["subtitle"],
                     style: TextStyle(
                       fontSize: 15,
+                      fontWeight: FontWeight.w500,
                       color: isDark ? Color(0xFFF0E5D9) : Color(0xFF7F5539),
                     ),
                   ),
