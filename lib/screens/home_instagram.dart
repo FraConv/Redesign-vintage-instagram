@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intagram/widgets/post.dart';
 import 'package:intagram/widgets/navbar.dart';
+import 'package:provider/provider.dart';
+import 'package:intagram/widgets/theme_provider.dart';
 
 class HomeInstagram extends StatefulWidget {
   const HomeInstagram({super.key});
@@ -12,7 +14,7 @@ class HomeInstagram extends StatefulWidget {
 class _HomeInstagramState extends State<HomeInstagram> {
   //dati dinamici
   int notifiche = 10;
-  int messaggi = 4;
+  int messaggi = 7;
 
   String formatBadgeCount(int count) {
     if (count > 9) return "9+";
@@ -64,11 +66,12 @@ class _HomeInstagramState extends State<HomeInstagram> {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = context.watch<SettingsProvider>().isDark;
     return Scaffold(
       //header
-      backgroundColor: const Color(0xFFFFF5EB),
+      backgroundColor: isDark ? Color(0xFF5C554D) : Color(0xFFFFF5EB),
       appBar: AppBar(
-        backgroundColor: const Color(0xFFFFF5EB),
+        backgroundColor: isDark ? Color(0xFF5C554D) : Color(0xFFFFF5EB),
         scrolledUnderElevation: 0,
         elevation: 0,
         titleSpacing: 0,
@@ -81,7 +84,7 @@ class _HomeInstagramState extends State<HomeInstagram> {
                 child: Image.asset(
                   "assets/img/Logo.png",
                   width: 140,
-                  color: Color(0xFF7F5539),
+                  color: isDark ? Color(0xFFF0E5D9) : Color(0xFF7F5539),
                 ),
               ),
               Container(
@@ -92,7 +95,7 @@ class _HomeInstagramState extends State<HomeInstagram> {
                   icon: Icon(
                     Icons.expand_more_rounded,
                     size: 40,
-                    color: Color(0xFF7F5539),
+                    color: isDark ? Color(0xFFF0E5D9) : Color(0xFF7F5539),
                   ),
                 ),
               ),
@@ -109,7 +112,10 @@ class _HomeInstagramState extends State<HomeInstagram> {
                         Positioned(
                           right: 4,
                           top: 1,
-                          child: buildBadge(formatBadgeCount(notifiche)),
+                          child: buildBadge(
+                            formatBadgeCount(notifiche),
+                            isDark,
+                          ),
                         ),
                     ],
                   ),
@@ -123,7 +129,7 @@ class _HomeInstagramState extends State<HomeInstagram> {
                         Positioned(
                           right: 4,
                           top: 1,
-                          child: buildBadge(formatBadgeCount(messaggi)),
+                          child: buildBadge(formatBadgeCount(messaggi), isDark),
                         ),
                     ],
                   ),
@@ -162,7 +168,7 @@ class _HomeInstagramState extends State<HomeInstagram> {
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(50),
                                 border: Border.all(
-                                  color: Colors.black,
+                                  color: isDark ? Colors.white : Colors.black,
                                   width: 3,
                                 ),
                               ),
@@ -170,12 +176,9 @@ class _HomeInstagramState extends State<HomeInstagram> {
                                 borderRadius: BorderRadius.circular(50),
                                 child: Image.asset(
                                   item["miniatura"],
-                                  width: double
-                                      .infinity, // riempie tutta la larghezza del container
-                                  height: double
-                                      .infinity, // e anche tutta l’altezza
-                                  fit: BoxFit
-                                      .cover, // riempie completamente lo spazio
+                                  width: double.infinity,
+                                  height: double.infinity,
+                                  fit: BoxFit.cover,
                                 ),
                               ),
                             ),
@@ -183,7 +186,9 @@ class _HomeInstagramState extends State<HomeInstagram> {
                               width: 150,
                               height: 65,
                               decoration: BoxDecoration(
-                                color: Color(0xFFCAB9A8),
+                                color: isDark
+                                    ? Color(0xFF2B2824)
+                                    : Color(0xFFCAB9A8),
                                 borderRadius: BorderRadius.only(
                                   bottomLeft: Radius.circular(50),
                                   bottomRight: Radius.circular(50),
@@ -195,13 +200,15 @@ class _HomeInstagramState extends State<HomeInstagram> {
                               width: 150,
                               height: 65,
                               decoration: BoxDecoration(
-                                color: Color(0xFFFFEBD8),
+                                color: isDark
+                                    ? Color(0xFF454039)
+                                    : Color(0xFFFFF5EB),
                                 borderRadius: BorderRadius.only(
                                   bottomLeft: Radius.circular(50),
                                   bottomRight: Radius.circular(50),
                                 ),
                                 border: Border.all(
-                                  color: Colors.black,
+                                  color: isDark ? Colors.white : Colors.black,
                                   width: 3,
                                 ),
                               ),
@@ -214,7 +221,9 @@ class _HomeInstagramState extends State<HomeInstagram> {
                                 width: 80,
                                 height: 80,
                                 decoration: BoxDecoration(
-                                  color: Color(0xFFB75446),
+                                  color: isDark
+                                      ? Color(0xFFA9655C)
+                                      : Color(0xFFDD7F72),
                                   borderRadius: BorderRadius.circular(250),
                                 ),
                               ),
@@ -230,7 +239,9 @@ class _HomeInstagramState extends State<HomeInstagram> {
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(50),
                                       border: Border.all(
-                                        color: Colors.black,
+                                        color: isDark
+                                            ? Colors.white
+                                            : Colors.black,
                                         width: 3.5,
                                       ),
                                     ),
@@ -242,7 +253,9 @@ class _HomeInstagramState extends State<HomeInstagram> {
                                           250,
                                         ),
                                         border: Border.all(
-                                          color: Color(0xFFDD7F72),
+                                          color: isDark
+                                              ? Color(0xFFC7756A)
+                                              : Color(0xFFDD7F72),
                                           width: 4,
                                         ),
                                       ),
@@ -263,16 +276,22 @@ class _HomeInstagramState extends State<HomeInstagram> {
                                         width: 26,
                                         height: 26,
                                         decoration: BoxDecoration(
-                                          color: const Color(0xFFDD7F72),
+                                          color: isDark
+                                              ? Color(0xFFC7756A)
+                                              : Color(0xFFDD7F72),
                                           shape: BoxShape.circle,
                                           border: Border.all(
-                                            color: Colors.black,
+                                            color: isDark
+                                                ? Colors.white
+                                                : Colors.black,
                                             width: 2.5,
                                           ),
                                         ),
-                                        child: const Icon(
+                                        child: Icon(
                                           Icons.add,
-                                          color: Colors.black,
+                                          color: isDark
+                                              ? Colors.white
+                                              : Colors.black,
                                           size: 18,
                                         ),
                                       ),
@@ -285,8 +304,10 @@ class _HomeInstagramState extends State<HomeInstagram> {
                         const SizedBox(height: 10),
                         Text(
                           isUserStory ? "La tua storia" : item["nome"],
-                          style: const TextStyle(
-                            color: Color(0xFF7F5539),
+                          style: TextStyle(
+                            color: isDark
+                                ? Color(0xFFF0E5D9)
+                                : Color(0xFF7F5539),
                             fontSize: 15,
                             fontWeight: FontWeight.bold,
                           ),
@@ -311,21 +332,21 @@ class _HomeInstagramState extends State<HomeInstagram> {
 }
 
 // badge
-Widget buildBadge(String text) {
+Widget buildBadge(String text, bool isDark) {
   return Container(
     width: 27.5,
     height: 27.5,
     padding: const EdgeInsets.symmetric(horizontal: 5),
     decoration: BoxDecoration(
-      color: const Color(0xFFDD7F72),
+      color: isDark ? Color(0xFFC7756A) : Color(0xFFDD7F72),
       borderRadius: BorderRadius.circular(20),
-      border: Border.all(color: Colors.black, width: 2),
+      border: Border.all(color: isDark ? Colors.white : Colors.black, width: 2),
     ),
     alignment: Alignment.center,
     child: Text(
       text,
-      style: const TextStyle(
-        color: Colors.black,
+      style: TextStyle(
+        color: isDark ? Colors.white : Colors.black,
         fontWeight: FontWeight.bold,
         fontSize: 12,
       ),

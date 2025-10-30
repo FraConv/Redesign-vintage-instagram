@@ -87,6 +87,7 @@ class _PostState extends State<Post> {
   @override
   Widget build(BuildContext context) {
     final isLeftHanded = context.watch<SettingsProvider>().isLeftHanded;
+    final isDark = context.watch<SettingsProvider>().isDark;
     return Column(
       children: List.generate(post.length, (index) {
         final item = post[index];
@@ -102,14 +103,17 @@ class _PostState extends State<Post> {
                   // -immagine
                   Container(
                     decoration: BoxDecoration(
-                      color: const Color(0xFFCAB9A8),
+                      color: isDark ? Color(0xFF2B2824) : Color(0xFFCAB9A8),
                       borderRadius: BorderRadius.circular(90),
                     ),
                     child: Container(
                       margin: const EdgeInsets.only(bottom: 20),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(90),
-                        border: Border.all(color: Colors.black, width: 3),
+                        border: Border.all(
+                          color: isDark ? Colors.white : Colors.black,
+                          width: 3,
+                        ),
                       ),
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(90),
@@ -144,7 +148,7 @@ class _PostState extends State<Post> {
                               borderRadius: BorderRadius.circular(50),
                               border: Border.all(
                                 color: item["isStory"]
-                                    ? Color(0xFFDD7F72)
+                                    ? Color(0xFFA9655C)
                                     : Colors.transparent,
                                 width: item["isStory"] ? 2 : 0,
                               ),
@@ -198,7 +202,9 @@ class _PostState extends State<Post> {
                                   offset: const Offset(2, 2),
                                 ),
                               ],
-                              color: const Color(0xFFDBB99C),
+                              color: isDark
+                                  ? Color(0xFF454039)
+                                  : Color(0xFFDBB99C),
                               borderRadius: BorderRadius.circular(50),
                             ),
                             child: Container(
@@ -211,7 +217,9 @@ class _PostState extends State<Post> {
                                   });
                                 },
                                 style: ElevatedButton.styleFrom(
-                                  backgroundColor: const Color(0xFFB08968),
+                                  backgroundColor: isDark
+                                      ? Color(0xFF514133)
+                                      : Color(0xFFB08968),
                                   elevation: 0,
                                   minimumSize: const Size(75, 25),
                                   padding: const EdgeInsets.symmetric(
@@ -220,8 +228,10 @@ class _PostState extends State<Post> {
                                   ),
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(50),
-                                    side: const BorderSide(
-                                      color: Colors.black,
+                                    side: BorderSide(
+                                      color: isDark
+                                          ? Colors.white
+                                          : Colors.black,
                                       width: 3,
                                     ),
                                   ),
@@ -241,7 +251,7 @@ class _PostState extends State<Post> {
                           Image.asset("assets/icons/more-icon.png"),
                         ],
                       ),
-                      tileColor: Colors.white.withOpacity(0.4),
+
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20),
                       ),
@@ -555,7 +565,7 @@ class _PostState extends State<Post> {
                     item["nome"],
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      color: Color(0xFF7F5539),
+                      color: isDark ? Color(0xFFF0E5D9) : Color(0xFF7F5539),
                       fontSize: 20,
                     ),
                   ),
@@ -563,7 +573,7 @@ class _PostState extends State<Post> {
                     item["descrizione"],
                     style: TextStyle(
                       fontWeight: FontWeight.normal,
-                      color: Color(0xFF9C6644),
+                      color: isDark ? Color(0xFFF0E5D9) : Color(0xFF7F5539),
                       fontSize: 15,
                     ),
                   ),

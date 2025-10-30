@@ -41,17 +41,18 @@ final List<Map<String, dynamic>> customThemes = [
 class _ThemesScreenState extends State<ThemesScreen> {
   @override
   Widget build(BuildContext context) {
+    final isDark = context.watch<SettingsProvider>().isDark;
     return Scaffold(
-      backgroundColor: const Color(0xFFFFF5EB),
+      backgroundColor: isDark ? Color(0xFF5C554D) : Color(0xFFFFF5EB),
       appBar: AppBar(
-        backgroundColor: const Color(0xFFFFF5EB),
+        backgroundColor: isDark ? Color(0xFF5C554D) : Color(0xFFFFF5EB),
         scrolledUnderElevation: 0,
         elevation: 0,
         title: Text(
           "Temi",
           style: TextStyle(
             fontSize: 35,
-            color: Color(0xFF7F5539),
+            color: isDark ? Color(0xFFF0E5D9) : Color(0xFF7F5539),
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -60,7 +61,7 @@ class _ThemesScreenState extends State<ThemesScreen> {
           icon: Icon(
             Icons.chevron_left_rounded,
             size: 45,
-            color: Color(0xFF7F5539),
+            color: isDark ? Color(0xFFF0E5D9) : Color(0xFF7F5539),
           ),
         ),
       ),
@@ -76,7 +77,7 @@ class _ThemesScreenState extends State<ThemesScreen> {
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 25,
-                  color: Color(0xFF7F5539),
+                  color: isDark ? Color(0xFFF0E5D9) : Color(0xFF7F5539),
                 ),
               ),
             ),
@@ -88,24 +89,30 @@ class _ThemesScreenState extends State<ThemesScreen> {
                     item["title"],
                     style: TextStyle(
                       fontSize: 22,
-                      color: Color(0xFF7F5539),
+                      color: isDark ? Color(0xFFF0E5D9) : Color(0xFF7F5539),
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                   subtitle: Text(
                     item["subtitle"],
-                    style: TextStyle(fontSize: 15, color: Color(0xFFA26F4E)),
+                    style: TextStyle(
+                      fontSize: 15,
+                      color: isDark ? Color(0xFFF0E5D9) : Color(0xFF7F5539),
+                    ),
                   ),
                   // switch
                   trailing: Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
-                      color: const Color(0xFFDBB99C),
+                      color: isDark ? Color(0xFF454039) : Color(0xFFDBB99C),
                     ),
                     child: Container(
                       margin: EdgeInsets.only(bottom: 7),
                       decoration: BoxDecoration(
-                        border: Border.all(color: Colors.black, width: 3),
+                        border: Border.all(
+                          color: isDark ? Colors.white : Colors.black,
+                          width: 3,
+                        ),
                         borderRadius: BorderRadius.circular(50),
                       ),
                       child: GestureDetector(
@@ -119,6 +126,11 @@ class _ThemesScreenState extends State<ThemesScreen> {
                               item["isActive"],
                             );
                           }
+                          if (item["title"] == "Tema scuro") {
+                            context.read<SettingsProvider>().toggleDark(
+                              item["isActive"],
+                            );
+                          }
                         },
                         child: AnimatedContainer(
                           duration: Duration(milliseconds: 200),
@@ -126,10 +138,14 @@ class _ThemesScreenState extends State<ThemesScreen> {
                           height: 34,
                           padding: EdgeInsets.all(3),
                           decoration: BoxDecoration(
-                            color: Color(0xFFFFF5EB),
+                            color: isDark
+                                ? Color(0xFF5C554D)
+                                : Color(0xFFFFF5EB),
                             borderRadius: BorderRadius.circular(20),
                             border: Border.all(
-                              color: Color(0xFFB08968),
+                              color: isDark
+                                  ? Color(0xFF514133)
+                                  : Color(0xFFB08968),
                               width: 3,
                             ),
                           ),
@@ -151,11 +167,20 @@ class _ThemesScreenState extends State<ThemesScreen> {
                               height: item["isActive"] ? 28 : 20,
                               decoration: BoxDecoration(
                                 color: item["isActive"]
-                                    ? Color(0xFFFF8100)
-                                    : Color(0xFFB08968),
+                                    ? (isDark
+                                          ? const Color.fromARGB(
+                                              255,
+                                              224,
+                                              166,
+                                              135,
+                                            )
+                                          : const Color(0xFFFF8100))
+                                    : (isDark
+                                          ? const Color(0xFF514133)
+                                          : const Color(0xFFB08968)),
                                 shape: BoxShape.circle,
                                 border: Border.all(
-                                  color: Colors.black,
+                                  color: isDark ? Colors.white : Colors.black,
                                   width: 3,
                                 ),
                                 boxShadow: item["isActive"]
@@ -184,7 +209,7 @@ class _ThemesScreenState extends State<ThemesScreen> {
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 25,
-                  color: Color(0xFF7F5539),
+                  color: isDark ? Color(0xFFF0E5D9) : Color(0xFF7F5539),
                 ),
               ),
             ),
@@ -197,7 +222,7 @@ class _ThemesScreenState extends State<ThemesScreen> {
               child: Container(
                 height: 35,
                 decoration: BoxDecoration(
-                  color: const Color(0xFFDBB99C),
+                  color: isDark ? Color(0xFF454039) : Color(0xFFDBB99C),
                   borderRadius: BorderRadius.circular(50),
                 ),
                 child: Container(
@@ -208,7 +233,9 @@ class _ThemesScreenState extends State<ThemesScreen> {
                       setState(() {});
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFFB08968),
+                      backgroundColor: isDark
+                          ? Color(0xFF514133)
+                          : Color(0xFFB08968),
                       elevation: 0,
                       minimumSize: const Size(75, 25),
                       padding: const EdgeInsets.symmetric(
@@ -217,7 +244,10 @@ class _ThemesScreenState extends State<ThemesScreen> {
                       ),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(50),
-                        side: const BorderSide(color: Colors.black, width: 3),
+                        side: BorderSide(
+                          color: isDark ? Colors.white : Colors.black,
+                          width: 3,
+                        ),
                       ),
                     ),
                     child: Text(
@@ -256,18 +286,25 @@ class _ThemesScreenState extends State<ThemesScreen> {
                               "Hai selezionato il tema: ${theme["nome"]}",
                               style: TextStyle(
                                 fontSize: 20,
-                                color: Color(0xFF7F5539),
+                                color: isDark
+                                    ? Color(0xFFF0E5D9)
+                                    : Color(0xFF7F5539),
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
-                            backgroundColor: const Color(0xFFFFEBD8),
-                            shape: Border.all(color: Colors.black, width: 3),
+                            backgroundColor: isDark
+                                ? Color(0xFF5C554D)
+                                : Color(0xFFFFF5EB),
+                            shape: Border.all(
+                              color: isDark ? Colors.white : Colors.black,
+                              width: 3,
+                            ),
                           ),
                         );
                       },
                       child: Container(
                         decoration: BoxDecoration(
-                          color: Color(0xFFCAB9A8),
+                          color: isDark ? Color(0xFF2B2824) : Color(0xFFCAB9A8),
                           borderRadius: BorderRadius.circular(40),
                         ),
                         child: Container(
@@ -276,16 +313,9 @@ class _ThemesScreenState extends State<ThemesScreen> {
                             color: const Color(0xFFFFF5EB),
                             borderRadius: BorderRadius.circular(40),
                             border: Border.all(
-                              color: const Color.fromARGB(255, 0, 0, 0),
+                              color: isDark ? Colors.white : Colors.black,
                               width: 3,
                             ),
-                            boxShadow: const [
-                              BoxShadow(
-                                color: Colors.black26,
-                                offset: Offset(0, 2),
-                                blurRadius: 4,
-                              ),
-                            ],
                           ),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -307,11 +337,15 @@ class _ThemesScreenState extends State<ThemesScreen> {
                                   padding: const EdgeInsets.symmetric(
                                     vertical: 5,
                                   ),
-                                  decoration: const BoxDecoration(
-                                    color: Color(0xFFFFEBD8),
+                                  decoration: BoxDecoration(
+                                    color: isDark
+                                        ? Color(0xFF454039)
+                                        : Color(0xFFFFEBD8),
                                     border: Border(
                                       top: BorderSide(
-                                        color: Colors.black,
+                                        color: isDark
+                                            ? Colors.white
+                                            : Colors.black,
                                         width: 3,
                                       ),
                                     ),
@@ -322,10 +356,12 @@ class _ThemesScreenState extends State<ThemesScreen> {
                                   ),
                                   child: Text(
                                     theme["nome"],
-                                    style: const TextStyle(
+                                    style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 16,
-                                      color: Color(0xFF7F5539),
+                                      color: isDark
+                                          ? Color(0xFFF0E5D9)
+                                          : Color(0xFF7F5539),
                                     ),
                                   ),
                                 ),

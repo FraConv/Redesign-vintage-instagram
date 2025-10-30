@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:intagram/widgets/theme_provider.dart';
 
 class NavItem {
   final String icon;
@@ -19,6 +21,7 @@ class NavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = context.watch<SettingsProvider>().isDark;
     // icon, activeicon e route
     final items = [
       NavItem("assets/icons/home.png", "assets/icons/home-on.png", "/home"),
@@ -36,7 +39,7 @@ class NavBar extends StatelessWidget {
         Container(
           margin: EdgeInsets.only(bottom: 20, right: 10, left: 10),
           decoration: BoxDecoration(
-            color: Color(0xFFCAB9A8),
+            color: isDark ? Color(0xFF2B2824) : Color(0xFFCAB9A8),
             borderRadius: const BorderRadius.only(
               topLeft: Radius.circular(75),
               topRight: Radius.circular(75),
@@ -48,14 +51,17 @@ class NavBar extends StatelessWidget {
             margin: const EdgeInsets.only(bottom: 8, right: 2, left: 2),
             height: 55,
             decoration: BoxDecoration(
-              color: const Color(0xFFFFEBD8),
+              color: isDark ? Color(0xFF454039) : Color(0xFFFFEBD8),
               borderRadius: const BorderRadius.only(
                 topLeft: Radius.circular(55),
                 topRight: Radius.circular(55),
                 bottomLeft: Radius.circular(10),
                 bottomRight: Radius.circular(10),
               ),
-              border: Border.all(color: Colors.black, width: 3),
+              border: Border.all(
+                color: isDark ? Colors.white : Colors.black,
+                width: 3,
+              ),
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -107,16 +113,19 @@ class NavBar extends StatelessWidget {
             child: Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(50),
-                color: Color(0xFFCAB9A8),
+                color: isDark ? Color(0xFF2B2824) : Color(0xFFCAB9A8),
               ),
               child: Container(
                 margin: EdgeInsets.only(bottom: 7),
                 width: 70,
                 height: 70,
                 decoration: BoxDecoration(
-                  color: const Color(0xFFFFEBD8),
+                  color: isDark ? Color(0xFF454039) : Color(0xFFFFEBD8),
                   shape: BoxShape.circle,
-                  border: Border.all(color: Colors.black, width: 3),
+                  border: Border.all(
+                    color: isDark ? Colors.white : Colors.black,
+                    width: 3,
+                  ),
                 ),
                 child: Padding(
                   padding: const EdgeInsets.all(12.0),

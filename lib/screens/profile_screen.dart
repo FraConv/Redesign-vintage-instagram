@@ -1,16 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:intagram/widgets/navbar.dart';
+import 'package:provider/provider.dart';
+import 'package:intagram/widgets/theme_provider.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final isDark = context.watch<SettingsProvider>().isDark;
     return Scaffold(
-      backgroundColor: const Color(0xFFFFF5EB),
+      backgroundColor: isDark ? Color(0xFF5C554D) : Color(0xFFFFF5EB),
       appBar: AppBar(
-        title: Text("profilo"),
-        backgroundColor: const Color(0xFFFFF5EB),
+        title: Text(
+          "Profile",
+          style: TextStyle(
+            color: isDark ? Color(0xFFF0E5D9) : Color(0xFF7F5539),
+          ),
+        ),
+        backgroundColor: isDark ? Color(0xFF5C554D) : Color(0xFFFFF5EB),
       ),
       body: Column(),
       bottomNavigationBar: const NavBar(selectedIndex: 4),
