@@ -13,7 +13,7 @@ class HomeInstagram extends StatefulWidget {
 
 class _HomeInstagramState extends State<HomeInstagram> {
   //dati dinamici
-  int notifiche = 10;
+  int notifiche = 20;
   int messaggi = 7;
 
   String formatBadgeCount(int count) {
@@ -334,8 +334,8 @@ class _HomeInstagramState extends State<HomeInstagram> {
 // badge
 Widget buildBadge(String text, bool isDark) {
   return Container(
-    width: 27.5,
-    height: 27.5,
+    width: 29,
+    height: 29,
     padding: const EdgeInsets.symmetric(horizontal: 5),
     decoration: BoxDecoration(
       color: isDark ? Color(0xFFC7756A) : Color(0xFFDD7F72),
