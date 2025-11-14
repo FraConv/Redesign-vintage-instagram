@@ -304,12 +304,17 @@ class _PostState extends State<Post> {
                             showModalBottomSheet(
                               context: context,
                               isScrollControlled: true,
-                              backgroundColor: const Color(0xFFFFEBD8),
-                              shape: const RoundedRectangleBorder(
+                              backgroundColor: isDark
+                                  ? Color(0xFF454039)
+                                  : Color(0xFFFFEBD8),
+                              shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.vertical(
                                   top: Radius.circular(110),
                                 ),
-                                side: BorderSide(color: Colors.black, width: 3),
+                                side: BorderSide(
+                                  color: isDark ? Colors.white : Colors.black,
+                                  width: 3,
+                                ),
                               ),
                               builder: (context) {
                                 return DraggableScrollableSheet(
@@ -331,21 +336,25 @@ class _PostState extends State<Post> {
                                                   bottom: 10,
                                                 ),
                                                 decoration: BoxDecoration(
-                                                  color: const Color(
-                                                    0xFFB08968,
-                                                  ),
+                                                  color: isDark
+                                                      ? Colors.white
+                                                      : Color(0xFFB08968),
                                                   borderRadius:
                                                       BorderRadius.circular(2),
                                                   border: Border.all(
-                                                    color: Colors.black,
+                                                    color: isDark
+                                                        ? Colors.white
+                                                        : Colors.black,
                                                     width: 1,
                                                   ),
                                                 ),
                                               ),
                                               Text(
                                                 "${item["comments"].length} commenti",
-                                                style: const TextStyle(
-                                                  color: Color(0xFF7F5539),
+                                                style: TextStyle(
+                                                  color: isDark
+                                                      ? Color(0xFFF0E5D9)
+                                                      : Color(0xFF7F5539),
                                                   fontSize: 18,
                                                   fontWeight: FontWeight.bold,
                                                 ),
@@ -368,9 +377,29 @@ class _PostState extends State<Post> {
                                                       ),
                                                       title: Text(
                                                         comment["user"],
+                                                        style: TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          color: isDark
+                                                              ? Color(
+                                                                  0xFFF0E5D9,
+                                                                )
+                                                              : Color(
+                                                                  0xFF7F5539,
+                                                                ),
+                                                        ),
                                                       ),
                                                       subtitle: Text(
                                                         comment["commento"],
+                                                        style: TextStyle(
+                                                          color: isDark
+                                                              ? Color(
+                                                                  0xFFF0E5D9,
+                                                                )
+                                                              : Color(
+                                                                  0xFF7F5539,
+                                                                ),
+                                                        ),
                                                       ),
                                                       trailing: IconButton(
                                                         onPressed: () {
@@ -394,13 +423,15 @@ class _PostState extends State<Post> {
                                                 decoration: InputDecoration(
                                                   hintText:
                                                       'Scrivi commento...',
-                                                  hintStyle: const TextStyle(
-                                                    color: Color(0xFF7F5539),
+                                                  hintStyle: TextStyle(
+                                                    color: isDark
+                                                        ? Color(0xFFF0E5D9)
+                                                        : Color(0xFF7F5539),
                                                   ),
                                                   filled: true,
-                                                  fillColor: const Color(
-                                                    0xFFFFF5EB,
-                                                  ),
+                                                  fillColor: isDark
+                                                      ? Color(0xFF5C554D)
+                                                      : Color(0xFFFFF5EB),
                                                   border: OutlineInputBorder(
                                                     borderRadius:
                                                         BorderRadius.circular(
@@ -413,12 +444,12 @@ class _PostState extends State<Post> {
                                                             BorderRadius.circular(
                                                               30,
                                                             ),
-                                                        borderSide:
-                                                            const BorderSide(
-                                                              color:
-                                                                  Colors.black,
-                                                              width: 2.2,
-                                                            ),
+                                                        borderSide: BorderSide(
+                                                          color: isDark
+                                                              ? Colors.white
+                                                              : Colors.black,
+                                                          width: 2.2,
+                                                        ),
                                                       ),
                                                   focusedBorder: OutlineInputBorder(
                                                     borderRadius:

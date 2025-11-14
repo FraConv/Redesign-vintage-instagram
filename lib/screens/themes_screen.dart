@@ -42,6 +42,7 @@ class _ThemesScreenState extends State<ThemesScreen> {
   @override
   Widget build(BuildContext context) {
     final isDark = context.watch<SettingsProvider>().isDark;
+    final isLeftHanded = context.watch<SettingsProvider>().isLeftHanded;
     return Scaffold(
       backgroundColor: isDark ? Color(0xFF5C554D) : Color(0xFFFFF5EB),
       appBar: AppBar(
@@ -219,7 +220,9 @@ class _ThemesScreenState extends State<ThemesScreen> {
                 horizontal: 15,
                 vertical: 10,
               ),
-              alignment: Alignment.centerRight,
+              alignment: isLeftHanded
+                  ? Alignment.centerLeft
+                  : Alignment.centerRight,
               child: Container(
                 height: 35,
                 decoration: BoxDecoration(

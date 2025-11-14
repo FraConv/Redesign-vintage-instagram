@@ -67,6 +67,7 @@ class _HomeInstagramState extends State<HomeInstagram> {
   @override
   Widget build(BuildContext context) {
     final isDark = context.watch<SettingsProvider>().isDark;
+    final isLeftHanded = context.watch<SettingsProvider>().isLeftHanded;
     return Scaffold(
       //header
       backgroundColor: isDark ? Color(0xFF5C554D) : Color(0xFFFFF5EB),
@@ -76,66 +77,152 @@ class _HomeInstagramState extends State<HomeInstagram> {
         elevation: 0,
         titleSpacing: 0,
         title: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 8),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Container(
-                child: Image.asset(
-                  "assets/img/Logo.png",
-                  width: 140,
-                  color: isDark ? Color(0xFFF0E5D9) : Color(0xFF7F5539),
-                ),
-              ),
-              Container(
-                padding: EdgeInsets.only(right: 79),
-                child: IconButton(
-                  onPressed: () =>
-                      Navigator.pushReplacementNamed(context, "/themes"),
-                  icon: Icon(
-                    Icons.expand_more_rounded,
-                    size: 40,
-                    color: isDark ? Color(0xFFF0E5D9) : Color(0xFF7F5539),
-                  ),
-                ),
-              ),
+            children: isLeftHanded
+                ? [
+                    // notifiche e messaggi a sinistra
+                    Row(
+                      children: [
+                        Stack(
+                          children: [
+                            IconButton(
+                              onPressed: () {},
+                              icon: Image.asset(
+                                "assets/icons/notif.png",
+                                width: 27,
+                              ),
+                            ),
+                            if (notifiche > 0)
+                              Positioned(
+                                right: 4,
+                                top: 1,
+                                child: buildBadge(
+                                  formatBadgeCount(notifiche),
+                                  isDark,
+                                ),
+                              ),
+                          ],
+                        ),
+                        Stack(
+                          children: [
+                            IconButton(
+                              onPressed: () {},
+                              icon: Image.asset(
+                                "assets/icons/mess.png",
+                                width: 27,
+                              ),
+                            ),
+                            if (messaggi > 0)
+                              Positioned(
+                                right: 4,
+                                top: 1,
+                                child: buildBadge(
+                                  formatBadgeCount(messaggi),
+                                  isDark,
+                                ),
+                              ),
+                          ],
+                        ),
+                      ],
+                    ),
 
-              Row(
-                children: [
-                  Stack(
-                    children: [
-                      IconButton(
-                        onPressed: () {},
-                        icon: Image.asset("assets/icons/notif.png", width: 27),
-                      ),
-                      if (notifiche > 0)
-                        Positioned(
-                          right: 4,
-                          top: 1,
-                          child: buildBadge(
-                            formatBadgeCount(notifiche),
-                            isDark,
+                    // logo e freccia a destra
+                    Row(
+                      children: [
+                        Image.asset(
+                          "assets/img/Logo.png",
+                          width: 140,
+                          color: isDark ? Color(0xFFF0E5D9) : Color(0xFF7F5539),
+                        ),
+                        IconButton(
+                          onPressed: () => Navigator.pushReplacementNamed(
+                            context,
+                            "/themes",
+                          ),
+                          icon: Icon(
+                            Icons.expand_more_rounded,
+                            size: 40,
+                            color: isDark
+                                ? Color(0xFFF0E5D9)
+                                : Color(0xFF7F5539),
                           ),
                         ),
-                    ],
-                  ),
-                  Stack(
-                    children: [
-                      IconButton(
-                        onPressed: () {},
-                        icon: Image.asset("assets/icons/mess.png", width: 27),
-                      ),
-                      if (messaggi > 0)
-                        Positioned(
-                          right: 4,
-                          top: 1,
-                          child: buildBadge(formatBadgeCount(messaggi), isDark),
+                      ],
+                    ),
+                  ]
+                : [
+                    // logo e freccia a sinistra
+                    Row(
+                      children: [
+                        Image.asset(
+                          "assets/img/Logo.png",
+                          width: 140,
+                          color: isDark ? Color(0xFFF0E5D9) : Color(0xFF7F5539),
                         ),
-                    ],
-                  ),
-                ],
-              ),
-            ],
+                        IconButton(
+                          onPressed: () => Navigator.pushReplacementNamed(
+                            context,
+                            "/themes",
+                          ),
+                          icon: Icon(
+                            Icons.expand_more_rounded,
+                            size: 40,
+                            color: isDark
+                                ? Color(0xFFF0E5D9)
+                                : Color(0xFF7F5539),
+                          ),
+                        ),
+                      ],
+                    ),
+
+                    // notifiche e messaggi a destra
+                    Row(
+                      children: [
+                        Stack(
+                          children: [
+                            IconButton(
+                              onPressed: () {},
+                              icon: Image.asset(
+                                "assets/icons/notif.png",
+                                width: 27,
+                              ),
+                            ),
+                            if (notifiche > 0)
+                              Positioned(
+                                right: 4,
+                                top: 1,
+                                child: buildBadge(
+                                  formatBadgeCount(notifiche),
+                                  isDark,
+                                ),
+                              ),
+                          ],
+                        ),
+                        Stack(
+                          children: [
+                            IconButton(
+                              onPressed: () {},
+                              icon: Image.asset(
+                                "assets/icons/mess.png",
+                                width: 27,
+                              ),
+                            ),
+                            if (messaggi > 0)
+                              Positioned(
+                                right: 4,
+                                top: 1,
+                                child: buildBadge(
+                                  formatBadgeCount(messaggi),
+                                  isDark,
+                                ),
+                              ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ],
           ),
         ),
       ),
